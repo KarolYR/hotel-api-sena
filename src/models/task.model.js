@@ -1,16 +1,14 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/sql/conectionDb.js";
 
-export const Task = sequelize.define("statusReservation", {
-  idStatusReservation: {
+// TODO: no hacer por el momenento
+export const Task = sequelize.define("Task", {
+  idTask: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
   name: {
     type: DataTypes.STRING,
-    unique: true,
   },
 });
-
-

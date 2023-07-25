@@ -1,8 +1,10 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/sql/conectionDb.js";
-import UserHotel  from "./userHotel.model.js";
 
-export const Assistance = sequelize.define("assistance", {
+
+//  TODO: No hacer por ahora
+
+const Assistance = sequelize.define("assistance", {
   idAssistance: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -22,3 +24,6 @@ export const Assistance = sequelize.define("assistance", {
     unique: true,
   },
 });
+
+
+export default Assistance;

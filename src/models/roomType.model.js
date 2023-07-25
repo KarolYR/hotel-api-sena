@@ -20,6 +20,7 @@ const RoomType = sequelize.define(
   }
 );
 
+// muchas habitaciones
 RoomType.hasMany(Room, {
   foreignKey: "idRoomType",
   sourceKey: "idRoomType",
@@ -30,4 +31,4 @@ Room.belongsTo(RoomType, {
   targetKey: "idRoomType",
 });
 
-export default RoomType
+export default RoomType;

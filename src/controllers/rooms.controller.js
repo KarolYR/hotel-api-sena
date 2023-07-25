@@ -4,7 +4,7 @@ const roomService = new RoomsService();
 export class RoomController {
   async postRoom(req, res) {
     try {
-      const createdRoom = await roomService.addRoom(req.body);
+      const createdRoom = await roomService.addRoom({room: req.body});
       res.status(200).json(createdRoom);
     } catch (error) {
       res.status(404).json({ error: error.message });
@@ -13,8 +13,8 @@ export class RoomController {
 
   async getRoom(req, res) {
     try {
-      const idRoom = req.params.id; 
-      const roomFound = await roomService.fetchRoom({idRoom});
+      const idRoom = req.params.id;
+      const roomFound = await roomService.fetchRoom({ idRoom });
       res.send(roomFound);
     } catch (error) {
       res.status(404).json({ error: error.message });
@@ -32,8 +32,10 @@ export class RoomController {
 
   async putRoom(req, res) {
     try {
-      const roomFound = await roomService()
-      const roomUpdated = await roomService.updateRoom(1)
+      const idRoom = req.params.id;
+      const room = req.body;
+      const roomUpdated = await roomService.updateRoom({ idRoom, room });
+      res.status(200).json(roomUpdated);
     } catch (error) {
       res.status(404).json({ error: error.message });
     }
@@ -42,7 +44,9 @@ export class RoomController {
   async deleteRoom(req, res) {
     try {
       const idRoom = req.params.id;
-      await roomService.removeRoom(idRoom);
+      const room = req.body;
+      await roomService.removeRoom({ idRoom, room });
+      res.status(204);
     } catch (error) {
       res.status(404).json({ error: error.message });
     }
@@ -57,7 +61,7 @@ export class RoomController {
     }
   }
 
-  async getStatusesRooms(req, res){
+  async getStatusesRooms(req, res) {
     try {
       const roomsStatusesFound = await roomService.fetchStatusesRooms();
       res.json(roomsStatusesFound);

@@ -1,8 +1,7 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/sql/conectionDb.js";
 
-
-export const Service = sequelize.define("service", {
+const Service = sequelize.define("service", {
   idService: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -17,6 +16,9 @@ export const Service = sequelize.define("service", {
   },
   precioService: {
     type: DataTypes.DECIMAL,
-  }
+  },
+}, {
+  timestamps: false
 });
 
+export default Service;
