@@ -14,7 +14,10 @@ export const getNow = () => {
 };
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3aa1628f6daa4de6f36479f4a8f0ef3a1b996a9d
 export const daysBetweenDates = (startDate, endDate) => {
   const startDay = new Date(startDate);
   const endDay = new Date(endDate);

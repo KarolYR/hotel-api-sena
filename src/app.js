@@ -7,8 +7,13 @@ import cookieParser from "cookie-parser";
 import roomRoutes from "./routes/rooms.routes.js";
 import authRoutes from "./routes/outh.routes.js";
 import reservationRoutes from "./routes/reservation.routes.js";
+<<<<<<< HEAD
 
 const app = express();
+
+=======
+const app = express();  
+>>>>>>> 3aa1628f6daa4de6f36479f4a8f0ef3a1b996a9d
 
 
 // Midlewares
