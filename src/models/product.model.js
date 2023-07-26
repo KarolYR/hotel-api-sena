@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/sql/conectionDb.js";
 
-export const Product = sequelize.define("product", {
+const Product = sequelize.define("product", {
   idProduct: {
     type: DataTypes.STRING(20),
     primaryKey: true,
@@ -19,6 +19,9 @@ export const Product = sequelize.define("product", {
   priceSingleProduct: {
     type: DataTypes.INTEGER,
   },
+  stock: {
+    type: DataTypes.STRING,
+  },
 });
 
-
+export default Product;

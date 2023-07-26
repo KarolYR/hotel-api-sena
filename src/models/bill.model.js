@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/sql/conectionDb.js";
 
-export const Bill = sequelize.define("bill", {
+const Bill = sequelize.define("bill", {
   idBill: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -16,7 +16,7 @@ export const Bill = sequelize.define("bill", {
   discountBill: {
     type: DataTypes.INTEGER,
   },
-  chargesBill : {
+  chargesBill: {
     type: DataTypes.INTEGER,
   },
   totalBruteBill: {
@@ -25,5 +25,7 @@ export const Bill = sequelize.define("bill", {
   toPayBill: {
     type: DataTypes.INTEGER,
   },
-
 });
+
+
+export default Bill;

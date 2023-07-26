@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/sql/conectionDb.js";
-import { Reservation } from "./reservation.model.js";
+import Package from "./package.model.js";
 
 const Room = sequelize.define("room", {
   idRoom: {
@@ -20,18 +20,17 @@ const Room = sequelize.define("room", {
     type: DataTypes.INTEGER,
   },
   descriptionRoom: {
-    type: DataTypes.TEXT
-  }
+    type: DataTypes.TEXT,
+  },
+},{
+  timestamps: false
 });
 
-Room.hasMany(Reservation, {
+// room tiene muchos packages
+Room.hasMany(Package, {
   foreignKey: "idRoom",
   sourceKey: "idRoom"
 })
 
-Reservation.belongsTo(Room, {
-  foreignKey: "idRoom",
-  targetKey: "idRoom"
-})
 
-export default Room
+export default Room;

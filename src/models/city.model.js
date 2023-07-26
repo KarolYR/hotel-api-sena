@@ -1,8 +1,8 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/sql/conectionDb.js";
-import { Costumer } from "./costumer.model.js";
+import  Costumer  from "./custumer.model.js";
 
-export const City = sequelize.define("city", {
+const City = sequelize.define("city", {
   idCity: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -12,6 +12,8 @@ export const City = sequelize.define("city", {
     type: DataTypes.STRING(20),
     unique: true,
   },
+}, {
+  timestamps: false,
 });
 
 City.hasMany(Costumer, {
@@ -21,5 +23,7 @@ City.hasMany(Costumer, {
 
 Costumer.belongsTo(City, {
   foreignKey: "idCity",
-  targetKey: "idCity"
-})
+  targetKey: "idCity",
+});
+
+export default City;

@@ -2,11 +2,12 @@ import app from "./app.js";
 import "dotenv/config.js";
 import { sequelize } from "./config/sql/conectionDb.js";
 
-const PORT = process.env.PORT || 3500;
 
+
+const PORT = process.env.PORT || 3500;
 const main = async () => {
   try {
-    await sequelize.sync({ force: false });
+    await sequelize.sync({ force: true });
     console.log(" *********** conexion exitosa 🧙🦄 ************ ");
     app.listen(PORT, () => {
       console.log("server on port", PORT);

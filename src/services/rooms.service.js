@@ -1,6 +1,6 @@
 import Room from "../models/room.model.js";
 import RoomType from "../models/roomType.model.js";
-import RoomStatus from "../models/roomStatus.js";
+import RoomStatus from "../models/roomStatus.model.js";
 
 export class RoomsService {
   async fetchRooms() {
@@ -15,7 +15,7 @@ export class RoomsService {
     return roomsFound;
   }
 
-  async addRoom({ room }) {
+  async addRoom({room}) {
     const createdRoom = await Room.create(room);
     return createdRoom;
   }
@@ -32,15 +32,13 @@ export class RoomsService {
     return roomFound;
   }
 
-
-  //TODO: falta 
-  async updateRoom({ idRoom, room }) {
+  async updateRoom({idRoom, room}) {
     const roomFound = await Room.findByPk(idRoom);
     const roomSaved = roomFound.set(room).save();
     return roomSaved;
   }
 
-  //TODO: falta 
+  //TODO: falta
   async removeRoom({ idRoom }) {
     await Room.destroy({
       where: {

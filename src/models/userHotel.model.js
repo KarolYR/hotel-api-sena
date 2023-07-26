@@ -1,8 +1,9 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/sql/conectionDb.js";
-import { Note } from "./note.model.js";
-import { Reservation } from "./reservation.model.js";
-import { Assistance } from "./assistance.model.js";
+
+import  Note  from "./note.model.js";
+import  Reservation  from "./reservation.model.js";
+import  Assistance  from "./assistance.model.js";
 
 const UserHotel = sequelize.define("userHotel", {
   idUser: {
@@ -35,11 +36,19 @@ UserHotel.hasMany(Note, {
   foreignKey: "idUser",
   sourceKey: "idUser",
 });
+Note.belongsTo(UserHotel, {
+  foreignKey: "idUser",
+  targetKey: "idUser",
+});
 
 // Reservas
 UserHotel.hasMany(Reservation, {
   foreignKey: "idUser",
   sourceKey: "idUser",
+});
+Reservation.belongsTo(UserHotel, {
+  foreignKey: "idUser",
+  targetKey: "idUser",
 });
 
 // Asistencia
@@ -48,20 +57,11 @@ UserHotel.hasMany(Assistance, {
   sourceKey: "idUser",
 });
 
-Note.belongsTo(UserHotel, {
-  foreignKey: "idUser",
-  targetKey: "idUser",
-});
-
-Reservation.belongsTo(UserHotel, {
-  foreignKey: "idUser",
-  targetKey: "idUser",
-});
-
 Assistance.belongsTo(UserHotel, {
   foreignKey: "idUser",
   targetKey: "idUser",
 });
+
 
 
 export default  UserHotel

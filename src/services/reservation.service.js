@@ -1,42 +1,50 @@
-import { Reservation } from "../models/reservation.model";
-import { Service } from "../models/service.model";
+import { daysBetweenDates } from "../utils/functions.js";
+
+import ReservationStatus from "../models/reservationStatus.model.js"; 
+import  Reservation  from "../models/reservation.model.js";
 
 export class ReservationService {
-    
-  //TODO: falta
   async fetchReservations() {
-    const reservationsFound = await Reservation.findAll({
-      include: [
-        {
-          model: Service,
-          atributes: ["nameService"],
-        },
-      ],
-    });
+    const reservationsFound = await Reservation.findAll();
     return reservationsFound;
   }
 
-  //TODO: falta 
-  async addReservation({ reservation }) {
-    const createdReservation = await Reservation.create(reservation);
-    return createdReservation;
-  }
-
-  //TODO: falta 
   async fetchReservation({ idReservation }) {
     const reservationFound = await Reservation.findByPk(idReservation, {
+      include: [
+        {
+          model: ReservationStatus,
+          atributes: ["idStatusReservation"],
+        },
+      ],
     });
     return reservationFound;
   }
 
-  //TODO: falta 
+  async addReservation({ reservation, idUser }) {
+    const { checkInDateReservation, checkOutDateReservation } = reservation;
+    
+    const daysReservation = daysBetweenDates(
+      checkInDateReservation,
+      checkOutDateReservation
+    );
+    
+    const dataReservation = {
+      ...reservation,
+      idUser,
+      daysReservation,
+    };
+
+    const createdReservation = await Reservation.create(dataReservation);
+    return createdReservation;
+  }
+
   async updateReservation({ idReservation, reservation }) {
     const reservationFound = await Reservation.findByPk(idReservation);
     const reservationSaved = reservationFound.set(reservation).save();
     return reservationSaved;
   }
 
-  //TODO: falta 
   async removeReservation({ idReservation }) {
     await Reservation.destroy({
       where: {
